@@ -4,7 +4,12 @@
   "description": "a",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production webpack -p",
+    "start": "webpack-dev-server",
+    "lint": "tslint",
+    "fix": "prettier --write src/**.ts",
+    "test": "jest --coverage"
   },
   "author": "himanoa <matsunoappy@gmail.com>",
   "license": "MIT",
