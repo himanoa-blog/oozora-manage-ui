@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --coverage",
     "build": "NODE_ENV=production webpack -p",
-    "start": "webpack-dev-server",
+    "start": "NODE_ENV=development webpack-dev-server --mode development",
     "lint": "tslint",
     "fix": "prettier --write src/**.ts"
   },
