@@ -4,8 +4,9 @@
   },
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parser": "typescript-eslint-parser",
-  "plugins": ["typescript"],
+  "plugins": ["typescript", "react"],
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "react/jsx-uses-react": 1
   }
 }
