@@ -7,14 +7,17 @@
     "test": "jest --coverage",
     "build": "NODE_ENV=production webpack -p",
     "start": "NODE_ENV=development webpack-dev-server --mode development",
-    "lint": "tslint",
-    "fix": "prettier --write src/**.ts"
+    "lint": "eslint src/**/*.ts src/*.ts src/**/*.tsx src/*.ts",
+    "fix": "prettier --write src/**.ts{,x}"
   },
   "author": "himanoa <matsunoappy@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
     "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-typescript": "^0.13.0",
     "file-loader": "^2.0.0",
     "jest": "^23.6.0",
     "prettier": "^1.15.2",
