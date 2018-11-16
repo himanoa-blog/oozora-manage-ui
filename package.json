@@ -7,7 +7,7 @@
     "test": "jest --coverage",
     "build": "NODE_ENV=production webpack -p",
     "start": "NODE_ENV=development webpack-dev-server --mode development",
-    "lint": "eslint src/**/*.ts src/*.ts src/**/*.tsx src/*.ts",
+    "lint": "eslint src/**/*.ts{x} src/*.ts{,x}",
     "fix": "prettier --write src/**.ts{,x}"
   },
   "author": "himanoa <matsunoappy@gmail.com>",
