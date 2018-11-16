@@ -2,15 +2,11 @@ const path = require("path");
 const ENV = process.env.NODE_ENV || "development";
 const DEV_PORT = process.env.PORT || 4444;
 const webpack = require("webpack");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = [
   {
     entry: {
-      app: ["./src/index.tsx"],
-      rssWorker: ["./src/workers/rssImportWorker.ts"]
+      app: ["./src/index.tsx"]
     },
     output: {
       filename: "[name].bundle.js",
@@ -40,9 +36,6 @@ module.exports = [
       new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify("production"),
         API_HOST: process.env.PROD_APIHOST
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        sourceMap: process.env.NODE_ENV === "production" ? false : true
       })
     ]
   }
