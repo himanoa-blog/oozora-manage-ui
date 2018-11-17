@@ -61,3 +61,20 @@
  * @import "utilities/skew-transforms";
  */
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+}
+.login-page {
+  background: url(./agreement-business-businessman-48195.jpg); /* https://www.pexels.com/photo/sign-pen-business-document-48195/ CC0 License */
+  background-size: cover;
+}
+
+.login-page::before{
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	content: ' ';
+}
