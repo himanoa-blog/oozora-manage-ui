@@ -39,7 +39,7 @@ module.exports = (env, argv) => (
         new UglifyJsPlugin({
           cache: true,
           parallel: true,
-          sourceMap: false // set to true if you want JS source maps
+          sourceMap: argv.mode ==="production" // set to true if you want JS source maps
         }),
       ]
     },
@@ -47,7 +47,7 @@ module.exports = (env, argv) => (
       new CheckerPlugin(),
       new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify("production"),
-        API_HOST: process.env.PROD_APIHOST
+        API_HOST: process.env.API_HOST || '"http://localhost:3000"'
       })
     ]
   }
