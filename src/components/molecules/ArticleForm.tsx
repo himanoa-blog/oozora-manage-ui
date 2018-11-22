@@ -8,8 +8,14 @@ export interface State {
   body: string;
 }
 
+export interface Entry {
+  title: string;
+  body: string;
+  published: boolean
+}
+
 export interface Props {
-  onSubmit: () => void;
+  onSubmit: (entry: Entry) => void;
   className?: string;
   initialState?: State;
 }
@@ -34,8 +40,8 @@ export class ArticleForm extends React.Component<Props, State> {
           }
         />
         <div className="flex justify-end w-full">
-          <Button className="bg-white text-grey-dark border border-grey-dark m-1" text="非公開で下書きを保存" />
-          <Button className="bg-green text-white m-1 " text="公開" />
+          <Button onClick={(e) => this.props.onSubmit({...this.state, ...{published: true}})} className="bg-white text-grey-dark border border-grey-dark m-1" text="非公開で下書きを保存" />
+          <Button onClick={(e) => this.props.onSubmit({...this.state, ...{published: false}})} className="bg-green text-white m-1 " text="公開" />
         </div>
       </div>
     );
