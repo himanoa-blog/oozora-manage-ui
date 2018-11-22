@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import { AxiosInstance } from "axios";
-import { ArticleForm } from "../molecules/ArticleForm";
+import { ArticleForm, Entry } from "../molecules/ArticleForm";
 
 declare var API_HOST: string;
 const host = API_HOST;
@@ -17,6 +17,10 @@ export class ArticleManage extends React.Component {
       baseURL: host
     });
   }
+  async publishEntry(entry: Entry) {
+    console.dir(this.client)
+    await this.client.post("/entries/", entry)
+  }
   async componentDidMount() {
     const setupResponse = await this.client.get("/login/oauth/setup");
     this.client.defaults.headers["x-xsrf-token"] =
@@ -27,7 +31,7 @@ export class ArticleManage extends React.Component {
       state,
       code
     });
-    this.client.defaults.headers["Authorization"] = `Bearer ${
+    this.client.defaults.headers.common["Authorization"] = `Bearer ${
       authResponse.data.token
     }`;
   }
@@ -36,7 +40,7 @@ export class ArticleManage extends React.Component {
       <div className="h-screen w-full flex flex-col">
         <ArticleForm
           className="h-full"
-          onSubmit={()=> {}}
+          onSubmit={this.publishEntry.bind(this)}
         />
       </div>
     );

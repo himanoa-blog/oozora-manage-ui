@@ -10,6 +10,6 @@ export function Button(props: Props) {
   return (
     <button 
       onClick={props.onClick}
-      className={`${props.className} font-bold py-2 px-4 rounded`}>{ props.text}</button>
+      className={`font-bold py-2 px-4 rounded ${props.className}`}>{ props.text}</button>
   )
 }
