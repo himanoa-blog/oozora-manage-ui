@@ -64,6 +64,9 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
 }
+.h-90v {
+  height: 90vh;
+}
 .login-page {
   background: url(./agreement-business-businessman-48195.jpg); /* https://www.pexels.com/photo/sign-pen-business-document-48195/ CC0 License */
   background-size: cover;
