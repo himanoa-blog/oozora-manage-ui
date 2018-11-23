@@ -37,12 +37,8 @@ export class ArticleManage extends React.Component<Props, State> {
   }
   render() {
     return (
-      <div className="h-screen w-full flex flex-col">
+      <div className="h-screen w-full flex flex-col bg-grey-lightest">
         <EntryCardList entries={this.state.entries} onEdit={(e) => console.dir(e)} />
-      {/* <ArticleForm
-          className="h-full"
-          onSubmit={this.publishEntry.bind(this)}
-        /> */}
       </div>
     );
   }

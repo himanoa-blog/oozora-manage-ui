@@ -27,7 +27,7 @@ export function EntryCard(props: Props) {
       e.preventDefault()
       props.onEdit(props.entry)
     }} className="no-underline">
-      <div className="max-w-sm rounded overflow-hidden shadow-md m-2 flex flex-col" >
+      <div className="max-w-sm rounded overflow-hidden shadow-md m-2 flex flex-col bg-white" >
         <div className={statusColor(props.entry.published)}>
           <p className="px-6 py-1 font-bold">{props.entry.published ? "公開中" : "非公開"}</p>
         </div>

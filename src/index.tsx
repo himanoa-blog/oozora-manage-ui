@@ -3,14 +3,13 @@ import * as ReactDOM from "react-dom";
 import axios from "axios";
 
 import { LoginWithAction } from "./containers/LoginWithAction";
-import { ArticleManage } from "./components/pages/ArticleManage";
+import { App } from "./route";
 
 
 declare var API_HOST: string;
 const host = API_HOST;
 
 const rootElement = document.getElementById("root");
-console.dir(host)
 
 const client = axios.create({
   withCredentials: true,
@@ -26,7 +25,7 @@ async function renderArticleManage(state?: string, code?: string) {
     localStorage.setItem('manage-token', authResponse.data.token)
   }
 
-  ReactDOM.render(<ArticleManage apiClient={client}/>, rootElement);
+  ReactDOM.render(<App apiClient={client}/>, rootElement);
 }
 
 (async () => {
