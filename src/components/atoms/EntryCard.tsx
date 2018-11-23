@@ -11,9 +11,7 @@ export interface Props {
   onEdit: (entry: Entry) => void
 }
 
-function truncateBody(length: number, body: string): string {
-  return body.slice(0,length)
-}
+const truncateBody = (length: number, body: string): string => `${body.slice(0,length)}...`
 
 function statusColor(status: boolean) {
   if (status) {
@@ -34,8 +32,8 @@ export function EntryCard(props: Props) {
           <p className="px-6 py-1 font-bold">{props.entry.published ? "公開中" : "非公開"}</p>
         </div>
         <div className="px-6 py-4">
-          <h1 className="font-bold text-xl mb-2 text-grey-darkest">{props.entry.title}</h1>
-          <p className="text-grey-dark text-base">
+          <h1 className="font-bold text-xl mb-3 text-grey-darkest">{props.entry.title}</h1>
+          <p className="text-grey-dark text-base leading-normal">
             {truncateBody(280, props.entry.body)}
           </p>
         </div>
