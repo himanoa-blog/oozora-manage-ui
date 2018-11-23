@@ -7,7 +7,9 @@ import { EntryCardList } from "../molecules/EntryCardList";
 declare var API_HOST: string;
 const host = API_HOST;
 
-interface Props {}
+interface Props {
+  apiClient: AxiosInstance
+}
 interface State {
   entries: Entry[]
 }
@@ -26,24 +28,10 @@ export class ArticleManage extends React.Component<Props, State> {
     this.state = {entries: []}
   }
   async publishEntry(entry: Entry) {
-    console.dir(this.client)
-    await this.client.post("/entries/", entry)
+    await this.props.apiClient.post("/entries/", entry)
   }
   async componentDidMount() {
-    const setupResponse = await this.client.get("/login/oauth/setup");
-    this.client.defaults.headers["x-xsrf-token"] =
-      setupResponse.headers["x-xsrf-token"];
-    const state = new URL(location.href).searchParams.get("state");
-    const code = new URL(location.href).searchParams.get("code");
-    const authResponse = await this.client.post("/login/oauth/google", {
-      state,
-      code
-    });
-    this.client.defaults.headers.common["Authorization"] = `Bearer ${
-      authResponse.data.token
-    }`;
-    console.dir(authResponse)
-    const entries = (await this.client.get("/entries", { params: { limit: 100, offset: 0}})).data
+    const entries = (await this.props.apiClient.get("/entries", { params: { limit: 100, offset: 0}})).data
     this.setState({...this.state, ...{entries}})
     console.dir(this.state)
   }
