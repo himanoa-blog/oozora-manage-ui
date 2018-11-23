@@ -1,8 +1,8 @@
 import * as React from "react";
-import axios from "axios";
 import { AxiosInstance } from "axios";
 import { ArticleForm, Entry } from "../molecules/ArticleForm";
 import { EntryCardList } from "../molecules/EntryCardList";
+import { ArticleManageNavbar } from "../organisms/ArticleManageNavbar"
 
 declare var API_HOST: string;
 const host = API_HOST;
@@ -18,13 +18,8 @@ function wait(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(() => resolve(), ms))
 }
 export class ArticleManage extends React.Component<Props, State> {
-  public client: AxiosInstance;
   constructor(props) {
     super(props);
-    this.client = axios.create({
-      withCredentials: true,
-      baseURL: host
-    });
     this.state = {entries: []}
   }
   async publishEntry(entry: Entry) {
@@ -38,6 +33,7 @@ export class ArticleManage extends React.Component<Props, State> {
   render() {
     return (
       <div className="h-screen w-full flex flex-col bg-grey-lightest">
+        <ArticleManageNavbar />
         <EntryCardList entries={this.state.entries} onEdit={(e) => console.dir(e)} />
       </div>
     );

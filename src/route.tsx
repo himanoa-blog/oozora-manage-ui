@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AxiosInstance } from "axios";
 
 import { ArticleManage } from "./components/pages/ArticleManage"
@@ -11,10 +11,11 @@ interface Props {
 export const App =  function(props: Props) {
   return (
     <Router>
-      <div>
+      <Switch>
         <Route exact path="/" render={() => <ArticleManage apiClient={props.apiClient}/>}/>
-        <Route exact path="*" component={NotFound}/>
-      </div>
+        <Route exact path="/new" render={() => <ArticleManage apiClient={props.apiClient}/>}/>
+        <Route render={() => <NotFound />} />
+      </Switch>
     </Router>
   )
 }
