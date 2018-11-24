@@ -4,9 +4,10 @@ import { AxiosInstance } from "axios"
 import { ErrorNotification } from "../atoms/ErrorNotification"
 import { ArticleForm, Entry } from "../molecules/ArticleForm"
 import { NewArticleNavbar } from "../organisms/NewArticleNavbar"
+import { withRouter, RouteComponentProps } from "react-router"
 
-interface Props{
-  apiClient: AxiosInstance
+interface Props extends RouteComponentProps {
+  apiClient: AxiosInstance;
 }
 
 interface State {
@@ -14,15 +15,18 @@ interface State {
 }
 
 
-export class NewArticle extends React.Component<Props, State> {
+class NewArticleC extends React.Component<Props, State> {
   constructor(props) {
     super(props)
     this.state = {error: null}
   }
   async postEntry(apiClient: AxiosInstance, entry) {
-    await apiClient.post("/entries", entry).catch(error => {
+    try {
+      await apiClient.post("/entries", entry)
+      this.props.history.push("/")
+    } catch(error) {
       this.setState({error: error.message})
-    })
+    }
   }
   render() {
     return (
@@ -34,3 +38,5 @@ export class NewArticle extends React.Component<Props, State> {
     )
   }
 }
+
+export const NewArticle = withRouter(NewArticleC)
