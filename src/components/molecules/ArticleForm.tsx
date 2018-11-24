@@ -31,7 +31,7 @@ export class ArticleForm extends React.Component<Props, State> {
   render() {
     return (
       <div className={`${this.props.className} block`}>
-        <Input placeholder="タイトル" className="font-extrabold w-full" onChange={(val) => this.setState({...this.state, ...{title: val}})} />
+        <Input placeholder="タイトル" className="font-extrabold w-full" onChange={(val) => this.setState({...this.state, ...{title: val}})} autoFocus/>
         <div className="border-b-2 border-green my-2">
           <ArticleEditor
             className="w-full"

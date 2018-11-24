@@ -6,16 +6,18 @@ interface Props {
   initialText?: string;
   className?: string;
   placeholder?: string;
+  autoFocus?: boolean;
 }
-export function ArticleEditor(props: Props) {
+export function ArticleEditor({onChange, initialText, className, placeholder, ...props}: Props) {
   return (
     <TextareaAutosize
-      className={`leading-loose text-gray-dark text-xl border-none focus:border-none focus:outline-none ${props.className ||
+      className={`leading-loose text-gray-dark text-xl border-none focus:border-none focus:outline-none ${className ||
         ""}`}
-      onChange={(event) => props.onChange(event.currentTarget.value)}
-      placeholder={props.placeholder}
+      onChange={(event) => onChange(event.currentTarget.value)}
+      placeholder={placeholder}
+      {...props}
     >
-      {props.initialText || ""}
+      {initialText || ""}
     </TextareaAutosize>
   );
 }

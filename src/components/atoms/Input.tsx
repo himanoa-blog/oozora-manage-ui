@@ -5,17 +5,18 @@ export interface Props {
   initialText?: string;
   className?: string;
   placeholder?: string;
+  autoFocus?: boolean;
   type?: string;
 }
 
-export function Input(props: Props) {
+export function Input({onChange, initialText, className, placeholder, ...props}: Props) {
   return (
     <input
-      type={props.type || "text"}
-      className={`text-gray-darkset text-3xl border-none focus:border-none focus:outline-none ${props.className || ""}`}
-      onChange={(event) => props.onChange(event.target.value)}
-      value={props.initialText}
-      placeholder={props.placeholder}
+      className={`text-gray-darkset text-3xl border-none focus:border-none focus:outline-none ${className || ""}`}
+      onChange={(event) => onChange(event.target.value)}
+      value={initialText}
+      placeholder={placeholder}
+      {...props}
     >
     </input>
   )
