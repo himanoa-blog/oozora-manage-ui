@@ -4,6 +4,7 @@ import { AxiosInstance } from "axios";
 
 import { ArticleManage } from "./components/pages/ArticleManage"
 import { NewArticle } from "./components/pages/NewArticle"
+import { EditArticle } from "./components/pages/EditArticle"
 import { NotFound } from "./components/pages/NotFound"
 
 interface Props {
@@ -15,6 +16,7 @@ export const App =  function(props: Props) {
       <Switch>
         <Route exact path="/" render={() => <ArticleManage apiClient={props.apiClient}/>}/>
         <Route exact path="/new" render={() => <NewArticle apiClient={props.apiClient}/>}/>
+        <Route exact path="/edit/:id" render={() => <EditArticle apiClient={props.apiClient}/>}/>
         <Route render={() => <NotFound />} />
       </Switch>
     </Router>
