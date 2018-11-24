@@ -15,7 +15,7 @@ export function NewArticle(props: Props) {
   return (
     <div className="h-screen w-full flex flex-col bg-grey-lightset">
       <NewArticleNavbar />
-      <ArticleForm onSubmit={postEntry.bind(null, props.apiClient)}/>
+      <ArticleForm onSubmit={postEntry.bind(null, props.apiClient)} className="m-5" />
     </div>
   )
 }
