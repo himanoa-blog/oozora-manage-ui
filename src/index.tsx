@@ -35,10 +35,11 @@ async function renderArticleManage(state?: string, code?: string) {
     client.defaults.headers.common["Authorization"] = `Bearer ${
       localStorage.getItem('manage-token')
     }`;
-    const setupResponse = await client.get("/login/check").catch(err => Promise.resolve(undefined))
+    const setupResponse = await client.get("/login/check").catch(err => err.response)
+    client.defaults.headers["x-xsrf-token"] = setupResponse.headers["x-xsrf-token"];
     const state = new URL(location.href).searchParams.get("state");
     const code = new URL(location.href).searchParams.get("code");
-    const isRequireLogin = (!state && !code) && !setupResponse || setupResponse!.status !== 200
+    const isRequireLogin = !state && !code && setupResponse.status !== 200
     if (isRequireLogin) {
       ReactDOM.render(<LoginWithAction />, rootElement);
     } else if(state && code) {

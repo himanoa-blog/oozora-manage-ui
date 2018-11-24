@@ -30,19 +30,19 @@ export class ArticleForm extends React.Component<Props, State> {
   }
   render() {
     return (
-      <div className={`${this.props.className}`}>
-        <div className="flex justify-end w-full">
-          <Button onClick={(e) => this.props.onSubmit({...this.state, ...{published: false}})} className="bg-white text-grey-dark border border-grey-dark m-1" text="非公開で下書きを保存" />
-          <Button onClick={(e) => this.props.onSubmit({...this.state, ...{published: true}})} className="bg-green text-white m-1 " text="公開" />
-        </div>
+      <div className={`${this.props.className} block`}>
         <Input placeholder="タイトル" className="font-extrabold w-full" onChange={(val) => this.setState({...this.state, ...{title: val}})} />
         <ArticleEditor
-          className="w-full h-90p"
+          className="w-full"
           placeholder="本文"
           onChange={(newString: string) =>
             this.setState({ ...this.state, ...{ body: newString } })
           }
         />
+        <div className="flex justify-end w-full">
+          <Button onClick={(e) => this.props.onSubmit({...this.state, ...{published: false}})} className="bg-white text-grey-dark border border-grey-dark m-1" text="非公開で下書きを保存" />
+          <Button onClick={(e) => this.props.onSubmit({...this.state, ...{published: true}})} className="bg-green text-white m-1 " text="公開" />
+        </div>
       </div>
     );
   }
