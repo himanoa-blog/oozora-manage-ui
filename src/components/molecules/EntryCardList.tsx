@@ -10,11 +10,12 @@ export interface Entry {
 export interface Props {
   entries: Entry[];
   onEdit: (entry: Entry) => void;
+  className?: string;
 }
 
 export function EntryCardList(props: Props) {
   return (
-    <div className="flex flex-wrap">
+    <div className={`flex flex-wrap ${props.className}`}>
       {props.entries.map(entry => {
         return <EntryCard entry={entry} onEdit={props.onEdit} />
       })}

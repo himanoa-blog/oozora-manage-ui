@@ -34,7 +34,7 @@ export class ArticleManage extends React.Component<Props, State> {
     return (
       <div className="h-screen w-full flex flex-col bg-grey-lightest">
         <ArticleManageNavbar />
-        <EntryCardList entries={this.state.entries} onEdit={(e) => console.dir(e)} />
+        <EntryCardList className="m-5" entries={this.state.entries} onEdit={(e) => console.dir(e)} />
       </div>
     );
   }
