@@ -28,9 +28,11 @@ export class ArticleForm extends React.Component<Props, State> {
       body: "",
     };
   }
-  static getDerivedStateFromProps({initialState}: Props, state){
-    const newState = initialState || {title: "", body: ""}
-    return newState
+  static getDerivedStateFromProps(nextProps: Props, prevState: State){
+    if(prevState.title === "" && prevState.body === "") {
+      const newState = nextProps.initialState || {title: "", body: ""}
+      return newState
+    }
   }
   render() {
     return (
