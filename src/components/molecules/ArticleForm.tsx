@@ -28,14 +28,19 @@ export class ArticleForm extends React.Component<Props, State> {
       body: "",
     };
   }
+  static getDerivedStateFromProps({initialState}: Props, state){
+    const newState = initialState || {title: "", body: ""}
+    return newState
+  }
   render() {
     return (
       <div className={`${this.props.className} block`}>
-        <Input placeholder="タイトル" className="font-extrabold w-full" onChange={(val) => this.setState({...this.state, ...{title: val}})} autoFocus/>
+        <Input placeholder="タイトル" className="font-extrabold w-full" onChange={(val) => this.setState({...this.state, ...{title: val}})} value={this.state.title} autoFocus/>
         <div className="border-b-2 border-green my-2">
           <ArticleEditor
             className="w-full"
             placeholder="本文"
+            value={this.state.body}
             onChange={(newString: string) =>
               this.setState({ ...this.state, ...{ body: newString } })
             }
