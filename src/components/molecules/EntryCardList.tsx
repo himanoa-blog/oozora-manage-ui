@@ -2,6 +2,7 @@ import * as React from "react";
 import { EntryCard } from "../atoms/EntryCard"
 
 export interface Entry {
+  id: number;
   title: string;
   body: string;
   published: boolean
