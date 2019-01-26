@@ -8,7 +8,7 @@
     "build": "NODE_ENV=production webpack -p",
     "start": "NODE_ENV=development webpack-dev-server --mode development",
     "lint": "eslint --ext ts --ext tsx src/",
-    "fix": "prettier --write src/**/*.ts{,x} src/*.ts{,x}",
+    "fix": "prettier --write src/**/*.tsx src/*.ts{,x} src/**/*.ts",
     "tailwind": "tailwind build src/style.css -c ./tailwind.config.js -o dist/style.css"
   },
   "author": "himanoa <matsunoappy@gmail.com>",
@@ -23,7 +23,7 @@
     "eslint-plugin-typescript": "^0.13.0",
     "file-loader": "^2.0.0",
     "jest": "^23.6.0",
-    "prettier": "^1.15.2",
+    "prettier": "^1.16.1",
     "react-dom": "^16.6.3",
     "tailwindcss": "^0.7.2",
     "ts-jest": "^23.10.4",

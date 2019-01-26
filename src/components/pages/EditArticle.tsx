@@ -1,16 +1,16 @@
 import * as React from "react";
-import { withRouter, RouteComponentProps } from "react-router"
-import { AxiosInstance } from "axios"
+import { withRouter, RouteComponentProps } from "react-router";
+import { AxiosInstance } from "axios";
 
-import { ErrorNotification } from "../atoms/ErrorNotification"
-import { ArticleForm, Entry } from "../molecules/ArticleForm"
-import { NewArticleNavbar } from "../organisms/NewArticleNavbar"
+import { ErrorNotification } from "../atoms/ErrorNotification";
+import { ArticleForm, Entry } from "../molecules/ArticleForm";
+import { NewArticleNavbar } from "../organisms/NewArticleNavbar";
 
 interface Params {
-  id: string
+  id: string;
 }
 interface Props extends RouteComponentProps<Params> {
-  apiClient: AxiosInstance
+  apiClient: AxiosInstance;
 }
 
 interface State {
@@ -21,25 +21,25 @@ interface State {
 
 class EditArticleC extends React.Component<Props, State> {
   constructor(props: Props) {
-    super(props)
+    super(props);
     this.state = {
       title: "",
       body: "",
       error: ""
-    }
+    };
   }
   async componentWillMount() {
-    const id = this.props.match.params.id
-    const response = await this.props.apiClient.get(`/entries/${id}`)
-    const {title, body} = response.data
-    this.setState({...this.state, ...{title, body}})
+    const id = this.props.match.params.id;
+    const response = await this.props.apiClient.get(`/entries/${id}`);
+    const { title, body } = response.data;
+    this.setState({ ...this.state, ...{ title, body } });
   }
   async postEntry(apiClient: AxiosInstance, entry) {
     try {
-      await apiClient.put(`/entries/${this.props.match.params.id}`, entry)
-      this.props.history.push("/")
-    } catch(error) {
-      this.setState({error: error.message})
+      await apiClient.put(`/entries/${this.props.match.params.id}`, entry);
+      this.props.history.push("/");
+    } catch (error) {
+      this.setState({ error: error.message });
     }
   }
   render() {
@@ -49,11 +49,11 @@ class EditArticleC extends React.Component<Props, State> {
         <ErrorNotification errorString={this.state.error} />
         <ArticleForm
           onSubmit={this.postEntry.bind(this, this.props.apiClient)}
-          initialState={{title: this.state.title, body: this.state.body}}
+          initialState={{ title: this.state.title, body: this.state.body }}
           className="m-5"
         />
       </div>
-    )
+    );
   }
 }
 

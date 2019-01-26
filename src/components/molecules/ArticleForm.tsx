@@ -11,7 +11,7 @@ export interface State {
 export interface Entry {
   title: string;
   body: string;
-  published: boolean
+  published: boolean;
 }
 
 export interface Props {
@@ -25,19 +25,25 @@ export class ArticleForm extends React.Component<Props, State> {
     super(props);
     this.state = props.initialState || {
       title: "",
-      body: "",
+      body: ""
     };
   }
-  static getDerivedStateFromProps(nextProps: Props, prevState: State){
-    if(prevState.title === "" && prevState.body === "") {
-      const newState = nextProps.initialState || {title: "", body: ""}
-      return newState
+  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
+    if (prevState.title === "" && prevState.body === "") {
+      const newState = nextProps.initialState || { title: "", body: "" };
+      return newState;
     }
   }
   render() {
     return (
       <div className={`${this.props.className} block`}>
-        <Input placeholder="タイトル" className="font-extrabold w-full" onChange={(val) => this.setState({...this.state, ...{title: val}})} value={this.state.title} autoFocus/>
+        <Input
+          placeholder="タイトル"
+          className="font-extrabold w-full"
+          onChange={val => this.setState({ ...this.state, ...{ title: val } })}
+          value={this.state.title}
+          autoFocus
+        />
         <div className="border-b-2 border-green my-2">
           <ArticleEditor
             className="w-full"
@@ -49,8 +55,20 @@ export class ArticleForm extends React.Component<Props, State> {
           />
         </div>
         <div className="flex justify-end w-full">
-          <Button onClick={(e) => this.props.onSubmit({...this.state, ...{published: false}})} className="bg-white text-grey-dark border border-grey-dark m-1" text="非公開で下書きを保存" />
-          <Button onClick={(e) => this.props.onSubmit({...this.state, ...{published: true}})} className="bg-green text-white m-1 " text="公開" />
+          <Button
+            onClick={e =>
+              this.props.onSubmit({ ...this.state, ...{ published: false } })
+            }
+            className="bg-white text-grey-dark border border-grey-dark m-1"
+            text="非公開で下書きを保存"
+          />
+          <Button
+            onClick={e =>
+              this.props.onSubmit({ ...this.state, ...{ published: true } })
+            }
+            className="bg-green text-white m-1 "
+            text="公開"
+          />
         </div>
       </div>
     );

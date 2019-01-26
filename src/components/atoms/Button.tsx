@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 interface Props {
   onClick: (e) => void;
@@ -8,8 +8,11 @@ interface Props {
 
 export function Button(props: Props) {
   return (
-    <button 
+    <button
       onClick={props.onClick}
-      className={`font-bold py-2 px-4 rounded ${props.className}`}>{ props.text}</button>
-  )
+      className={`font-bold py-2 px-4 rounded ${props.className}`}
+    >
+      {props.text}
+    </button>
+  );
 }
